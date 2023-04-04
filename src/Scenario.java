@@ -19,11 +19,11 @@ public class Scenario {
         String filename = input.nextLine();
         try {
             JSONObject obj = (JSONObject) new JSONParser().parse(new FileReader(filename));
-            JSONArray processingElement=(JSONArray) obj.get("processing_elements");
+            JSONArray processingElement = (JSONArray) obj.get("processing_elements");
             for (int i = 0; i < processingElement.size(); i++) {
                 JSONObject obj1 = (JSONObject) processingElement.get(i);
                 switch ((String) obj1.get("type")) {
-                    case "List": 
+                    case "List" -> { 
                         int max = 0;
                         JSONArray processingElementsArray = (JSONArray)obj1.get("parameters");
                         for (int j = 0; j < processingElementsArray.size(); j++) {
@@ -40,12 +40,33 @@ public class Scenario {
                         else {
                             System.out.println("max is zero or less");
                         }
+                    }
                         
+                    case "Split" -> {
+                        // split logic
+                    }
+                        
+                    case "LengthFilter" -> {
+                        // length filter logic
+                    }
+                        
+                    case "Rename" -> {
+                        // rename logic
+                    }
+                        
+                    case "Print" -> {
+                        // print logic
+                    }
+                        
+                    default -> {
                         break;
-                    default:
-                        ;
+                    }
                 }
-           }
+                // split logic
+                // length filter logic
+                // rename logic
+                // print logic
+                           }
         } catch (ParseException ex) {
             System.out.println("File cannot be parsed by json");
             //Logger.getLogger(Scenario.class.getName()).log(Level.SEVERE, null, ex);
